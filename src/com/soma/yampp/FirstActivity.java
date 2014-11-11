@@ -268,6 +268,7 @@ mShowMapTxt.setOnClickListener(this);
         @Override
         public void onComplete(Bundle values) {
 
+
             try {
                 adapter.getUserProfileAsync(new ProfileDataListener());
 

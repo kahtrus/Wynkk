@@ -4,6 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import android.util.DisplayMetrics;
+import org.brickred.socialauth.Profile;
+import org.brickred.socialauth.android.DialogListener;
+import org.brickred.socialauth.android.SocialAuthAdapter;
+import org.brickred.socialauth.android.SocialAuthAdapter.Provider;
+import org.brickred.socialauth.android.SocialAuthError;
+import org.brickred.socialauth.android.SocialAuthListener;
+
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -48,9 +56,11 @@ import com.soma.synge.R;
 import com.soma.util.CommonFunction;
 import com.soma.util.CommonFunction.FragmentCallback;
 import com.soma.util.ServiceWork;
+import org.brickred.socialauth.android.SocialAuthAdapter;
 
 public class MainPageDrawerAcitivity extends Activity implements OnClickListener,SeekBar.OnSeekBarChangeListener
 {
+    private SocialAuthAdapter adapter;
     private static final double DEFAULT_RADIUS = 1000000;
     public static final double RADIUS_OF_EARTH_METERS = 6371009;
     private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
@@ -111,6 +121,9 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         setContentView(R.layout.main_page_with_three_drawer);
         inflater= (LayoutInflater) MainPageDrawerAcitivity.this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+
+
 
         layoutMapOverlay = (FrameLayout) findViewById(R.id.map_overlay_layout);
         typeface=Typeface.createFromAsset(getAssets(), "Semplicita-light.ttf");
@@ -215,6 +228,10 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         mGPlusInvite.setOnClickListener(this);
         mLinkedInInvite.setOnClickListener(this);
         mLocation.setOnClickListener(this);
+
+        adapter = new SocialAuthAdapter(new ResponseListener());
+        adapter.addProvider(SocialAuthAdapter.Provider.FACEBOOK, R.drawable.facebook);
+        adapter.enable(mScrollView);
 
         mBottomSliderLayout.setOnTouchListener(new OnTouchListener() {
 
@@ -361,7 +378,10 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
 
                 // Getting view from the layout file info_window_layout_xml
                 View view = getLayoutInflater().inflate(R.layout.info_window_layout_xml, null);
-                view.setLayoutParams(new RelativeLayout.LayoutParams(500, RelativeLayout.LayoutParams.WRAP_CONTENT));
+                DisplayMetrics displaymetrics = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+                int width = displaymetrics.widthPixels;
+                view.setLayoutParams(new RelativeLayout.LayoutParams(width*2/3, RelativeLayout.LayoutParams.WRAP_CONTENT));
                 TextView mCommentText = (TextView) view.findViewById(R.id.mCommentText);
                 TextView mAddress = (TextView) view.findViewById(R.id.mAddress);
                 ImageView mSmilingMonkey=(ImageView)view.findViewById(R.id.mSmilingMoneky);
@@ -1459,6 +1479,47 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         }
     }
 
+
+    //LISTENER FOR SOCIALAUTH ANDROID LIB
+    private final class ResponseListener implements DialogListener
+    {
+        public void onComplete(Bundle values) {
+
+            adapter.updateStatus("Check out this awesome app!", new MessageListener(),false);
+
+        }
+
+        @Override
+        public void onError(SocialAuthError e) {
+            Log.e("ResponseListener",e.toString());
+        }
+
+
+        public void onCancel() {
+            Log.d("ShareButton" , "Cancelled");
+        }
+
+        @Override
+        public void onBack() {
+
+        }
+    }
+
+    // To get status of message after authentication
+    private final class MessageListener implements SocialAuthListener<Integer> {
+
+        public void onExecute(String provider,Integer t) {
+            Integer status = t;
+            if (status.intValue() == 200 || status.intValue() == 201 ||status.intValue() == 204)
+                Toast.makeText(MainPageDrawerAcitivity.this, "Message posted",Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(MainPageDrawerAcitivity.this, "Message not posted",Toast.LENGTH_LONG).show();
+        }
+
+        public void onError(SocialAuthError e) {
+
+        }
+    }
 
 
 }

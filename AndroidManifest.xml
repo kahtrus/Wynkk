@@ -39,7 +39,7 @@
         <!--<release key="AIzaSyB9T3fBp_CDhZ1s6UV2k7ojOAa4uspoJ2Q"/>-->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyD6yh1Q3vDONrJvt6KgJQIDXlw51BBIgqM" />
+            android:value="AIzaSyB9T3fBp_CDhZ1s6UV2k7ojOAa4uspoJ2Q" />
 
         <activity
             android:name="com.soma.yampp.FirstActivity"
