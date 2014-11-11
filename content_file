@@ -1,0 +1,77 @@
+CiCSHq7lj9+xAI8DidcaFGnZ6MM=
+
+
+Linked-in secrets and key:
+
+Application Details
+Company:
+
+89itworld
+
+Application Name:
+
+HappyApp
+
+API Key:75imcf6zrv56rc
+
+Secret Key:R7TQ8U4EN2lpWu2c
+
+OAuth User Token:
+fa50994c-a6d0-427a-afb7-28c1d6a91d9d
+
+OAuth User Secret:
+
+6e9f1275-929e-4b77-bd74-4ad865cc8e13
+
+30.3330919,77.9610158
+
+https://maps.googleapis.com/maps/api/place/search/json?&location=22.724376,75.879668&radius=1000&sensor=false&key=AIzaSyBDbHzEkRUXsrf5g-7Yb_sJq40GzGbtyiI
+
+
+https://maps.googleapis.com/maps/api/place/search/json?key=AIzaSyD2NOOFCz-XbRcbqqNgpTfc_RdX-2DvOmU&latitude=30.3330919&longitude=77.9610158&radius=500
+
+
+https://maps.googleapis.com/maps/api/geocode/json?latlng=35.1849925,-101.9502058&key=AIzaSyBDbHzEkRUXsrf5g-7Yb_sJq40GzGbtyiI
+
+https://developers.google.com/maps/documentation/geocoding/?hl=iw
+
+https://maps.googleapis.com/maps/api/staticmap?center=35.1849925,-101.9502058&zoom=15&size=800x800&maptype=roadmap
+
+https://maps.googleapis.com/maps/api/staticmap?center=Red%20Robin%20Restaurant,%208657,%20West%20135th%20Street,%20Overland%20Park,%20Johnson%20County,%20Kansas,%2066223,%20United%20States%20of%20America&zoom=15&size=1200x900&maptype=roadmap
+
+
+https://maps.googleapis.com/maps/api/staticmap?center=New+York,NY&zoom=13&size=600x300&key=AIzaSyBDbHzEkRUXsrf5g-7Yb_sJq40GzGbtyiI
+
+https://docs.google.com/spreadsheets/d/1EteD0MvyojsgaOUmUZIIu1CGztOEhUWe69ER97E2k-U/edit?usp=sharing
+
+http://stackoverflow.com/questions/13742551/how-to-get-my-location-changed-event-with-google-maps-android-api-v2
+
+https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.859294,2.347589&radius=5000&types=food|cafe|&key=AIzaSyBDbHzEkRUXsrf5g-7Yb_sJq40GzGbtyiI
+
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&rankby=1000&types=food|cafe&key=AIzaSyBDbHzEkRUXsrf5g-7Yb_sJq40GzGbtyiI
+
+Hello sir,
+
+please find the attached apk of yampp with today work:
+
+1. New design is implemented.
+2. As soon as place is get it is set to the location (nearest place is set to the location tab from your location) as you told me to put the nearest place in tab.
+
+ 
+
+
+private double distance(double lat1, double lon1, double lat2, double lon2) {
+      double theta = lon1 - lon2;
+      double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+      dist = Math.acos(dist);
+      dist = rad2deg(dist);
+      dist = dist * 60 * 1.1515;
+       return (dist);
+    }
+
+   private double deg2rad(double deg) {
+      return (deg * Math.PI / 180.0);
+    }
+   private double rad2deg(double rad) {
+      return (rad * 180.0 / Math.PI);
+    }

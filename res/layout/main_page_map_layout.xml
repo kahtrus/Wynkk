@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#04A9A9"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/mSLiderUpDown"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/down_arrow" />
+
+        <LinearLayout
+            android:id="@+id/topHeader"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:src="@drawable/logo_copy" />
+
+            <TextView
+                android:id="@+id/mUserName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Navneet Joshi"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ProfileWithSearchLayuot"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="#04A9A9"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:weightSum="1" >
+
+                <ImageView
+                    android:id="@+id/mYamppIcon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:src="@drawable/logo_copy" />
+
+                <TextView
+                    android:id="@+id/mUserName1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".4"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Navneet Joshi"
+                    android:textColor="#fff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/mShareIcon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1"
+                    android:src="@drawable/share_icon" />
+
+                <ImageView
+                    android:id="@+id/mMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1"
+                    android:src="@drawable/setting_icon" />
+
+                <ImageView
+                    android:id="@+id/mUserImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:src="@drawable/profile" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/dot"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_below="@id/top"
+                android:src="@drawable/dashedborder" />
+
+            <LinearLayout
+                android:id="@+id/searchTab"
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/dot"
+                android:orientation="horizontal"
+                android:weightSum="1" >
+
+                <EditText
+                    android:id="@+id/mSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight=".9"
+                    android:gravity="center"
+                    android:hint="search here"
+                    android:padding="3dp"
+                    android:textColor="#fff"
+                    android:textColorHint="#fff" />
+
+                <ImageView
+                    android:id="@+id/searchIcon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".1"
+                    android:padding="5dp"
+                    android:src="@drawable/search_icon" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/dot1"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/top"
+        android:src="@drawable/dashedborder" />
+
+    <FrameLayout
+        android:id="@+id/map_overlay_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" >
+    </FrameLayout>
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/dot1" />
+
+    <LinearLayout
+        android:id="@+id/below"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#04A9A9"
+        android:orientation="vertical" >
+
+        
+        <ImageView
+            android:id="@+id/mSLiderBottom"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:src="@drawable/down_arrow" 
+            android:layout_marginBottom="5dp"/>
+        
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:id="@+id/BottomView">
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/map"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <EditText
+                android:id="@+id/setLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".8"
+                android:background="@null"
+                android:editable="false"
+                android:ems="10"
+                android:hint="Location*"
+                android:textColor="#fff"
+                android:textColorHint="#fff" >
+
+                <requestFocus />
+            </EditText>
+
+            <ImageView
+                android:id="@+id/mDownArrow"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight=".2"
+                android:src="@drawable/down_arrow" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/inputborder" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="25dp"
+            android:background="#04A9A9"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <LinearLayout
+                android:id="@+id/mEmoticonLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight=".2"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:weightSum="1" >
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_weight=".5"
+                    android:src="@drawable/plus_icon" />
+
+                <ImageView
+                    android:id="@+id/mEmoticon"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_weight=".5"
+                    android:src="@drawable/monkey_5" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/mComments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight=".7"
+                android:gravity="bottom"
+                android:hint="comment"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/mSendComment"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_weight=".1"
+                android:padding="3dp"
+                android:src="@drawable/navigation_arrow" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+    <ScrollView
+        android:id="@+id/mScroll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/below"
+        android:scrollbars="horizontal"
+         android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="5" >
+
+            <ImageView
+                android:id="@+id/monkey1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:src="@drawable/monkey_1" />
+
+            <ImageView
+                android:id="@+id/monkey2"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:src="@drawable/monkey_2" />
+
+            <ImageView
+                android:id="@+id/monkey3"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:src="@drawable/monkey_3" />
+
+            <ImageView
+                android:id="@+id/monkey4"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:src="@drawable/monkey_4" />
+
+            <ImageView
+                android:id="@+id/monkey5"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:src="@drawable/monkey_5" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/commentLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/commentHead"
+        android:background="#71D0C8"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <ImageView
+                android:id="@+id/mSmilingMoneky"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight=".2"
+                android:src="@drawable/smily" />
+
+            <ScrollView
+                android:id="@+id/textAreaScroller"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight=".8"
+                android:scrollbars="none" >
+
+                <TextView
+                    android:id="@+id/mCommentText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="35dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left"
+                    android:text="I love this place!"
+                    android:textColor="#04A9A9"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/commentHead"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/mUserImage"
+        android:background="@drawable/strip" 
+        android:weightSum="1"
+        android:gravity="center">
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/mAddress"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="left"
+            android:padding="3dp"
+            android:singleLine="false"
+            android:text="smilingmonkey@ wester row"
+            android:textColor="#fff" />
+
+        <TextView
+            android:id="@+id/minimizeMarker"
+            android:layout_marginTop="10dp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight=".1"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textColor="#fff"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

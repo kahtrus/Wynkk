@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lower_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/toplayout"
+        android:layout_width="fill_parent"
+        android:layout_height="230dp"
+        android:background="@drawable/background"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="50dp"
+            android:src="@drawable/logo" />
+    </LinearLayout>
+
+     <TextView
+            android:padding="10dp"
+            android:id="@+id/mSocial"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="1dp"
+            android:text="login/register with social media"
+            android:textColor="#fff"
+            android:layout_below="@id/toplayout"
+            android:background="@drawable/button"
+            android:textSize="20sp" />
+     
+      <TextView
+          android:visibility="gone"
+            android:padding="5dp"
+            android:id="@+id/mShowMap"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="0dp"
+            android:text="Show map"
+            android:textColor="#fff"
+            android:layout_below="@id/toplayout"
+            android:textSize="20sp" />
+     
+     <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/mSocial"
+         />
+    
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/mSocial"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/lower_bg"
+        android:orientation="vertical" >
+
+       
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+          
+              <ImageView
+                android:id="@+id/mFbShare"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:src="@drawable/fb_btn" />
+
+            <ImageView
+                android:id="@+id/mTweetShare"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:src="@drawable/twitter_small" />
+
+            <ImageView
+                android:id="@+id/mGplusShare"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:src="@drawable/gplus_small" />
+
+            
+        </LinearLayout>
+        
+           <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+          
+             <ImageView
+                android:id="@+id/mLinkedInShare"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:src="@drawable/linkdin" />
+
+            <ImageView
+                android:id="@+id/mInstagram"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:src="@drawable/instagram" />
+
+            
+
+            <ImageView
+                android:id="@+id/mPinterest"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:src="@drawable/printrest" />
+        </LinearLayout>
+        
+        
+    </LinearLayout>
+
+    
+
+</RelativeLayout>

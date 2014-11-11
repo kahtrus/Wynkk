@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:background="#282E2E"
+   
+    android:weightSum="1" >
+
+    <ImageView
+        android:id="@+id/monkey"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".3"
+        android:src="@drawable/monkey_1" />
+
+    <TextView
+ android:singleLine="true"
+        android:id="@+id/commentPlace"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:text="hello Mcd"
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/mTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:text="2 hrs"
+        android:textColor="#fff" />
+
+</LinearLayout>

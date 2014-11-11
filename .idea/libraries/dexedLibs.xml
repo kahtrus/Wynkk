@@ -1,0 +1,43 @@
+<component name="libraryTable">
+  <library name="dexedLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/jackson-mapper-asl-1.9.4-46820a904350d22f380c450c77edd826.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/jsr305-1.3.9-74983ad515c794e5166a8ad5d55f72b4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/jackson-mapper-asl-1.9.4-8a351be51d7f6a9673c7274ceaa7a0d7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-api-client-android2-1.10.3-beta-5f0b1f7b7731b4f476f1b12dffb847d4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/gson-2.1-ada32522185d26702cf977d13142aef5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/core-20bf296bb00023787625780b364df34b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/core-f07b8ea6896573508ccab876a104bcad.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-http-client-1.10.3-beta-dd147923a0c4f4d4c42f15bc3326be92.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/jackson-core-asl-1.9.4-fbff09f1238837a7152508abaac40272.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/socialauth-4.4-df638634932603046ac6f91b4d6ecf92.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/protobuf-java-2.2.0-41ec859c1d3b4e6887f42f8dadc03318.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/httpclient-4.2.5-eb758f9b31f67722f627d1d7fa57571e.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/httpclient-4.2.5-19e231167db19f91a3ee7d5a833f29e3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-http-client-1.10.3-beta-58ea15c21cfedac54ee6a8677ca0c67b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/gson-2.1-8e65cdc224985bf33a90a0f364a927e5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-http-client-android2-1.10.3-beta-681193b1a0810d5c42fc6389266bdba6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android-support-v4-18e75dbb827f5c7c38f1073851941f77.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-oauth-client-1.10.1-beta-9bba72f70449ff5a4a6691e404166258.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-api-client-1.10.3-beta-ff2fdb234d1f99af3a46740d82660c68.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-play-services-ef2109ea5a313af2c6ec56d4ef2813cd.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-http-client-android2-1.10.3-beta-339088ee145b6bc4c0fba792f75b3ef3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/jsr305-1.3.9-c9f2a6cd2a5e2ca53462f1ae5300a03b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-play-services_lib-acadf4a2103877f20058e39106db70be.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/jackson-core-asl-1.9.4-edd5e34cee390f925344abaaac394d08.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/pinit-sdk-1.0-3ba7ba43fdb165f997738ed9abe15683.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android-support-v4-fa72463dcf413f617bbfe83f3b4fe297.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-api-client-1.10.3-beta-7f2a834fdf3c0d518b3050fc48c48ff4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-api-client-android2-1.10.3-beta-23a486526b1441c4c179ad28fd8870cd.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/httpmime-4.2.5-ed19eca176be441fe481dcfe7709d03c.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/protobuf-java-2.2.0-77f963dabe2af436242ff30dba7248c1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/guava-11.0.1-fe7392343922376fdfc98d9ef3ee2b37.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/socialauth-android-b9e4fc56b604a918051a8a094e247e3e.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/google-oauth-client-1.10.1-beta-03973ef1062f3f1754d4272885cdadeb.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/httpmime-4.2.5-484528fe6f6b98df6f20414b07f2b988.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/guava-11.0.1-0e951051aa7ba6ed8009835594fef999.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
