@@ -236,6 +236,8 @@ mShowMapTxt.setOnClickListener(this);
     @Override
     protected void onResume() {
         super.onResume();
+        // Logs 'install' and 'app activate' App Events.
+        //AppEventsLogger.activateApp(this);
         Log.e(TAG,"CHECK THIS UP ");
     }
     //    PinItListener _listener = new PinItListener() {
@@ -293,6 +295,23 @@ mShowMapTxt.setOnClickListener(this);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+//                    adapter.updateStatus("hello from wynkk", new SocialAuthListener<Integer>(){
+//                        public void onExecute(String provider,Integer t) {
+//                            Integer status = t;
+//                            if (status.intValue() == 200 || status.intValue() == 201 ||status.intValue() == 204)
+//                                Log.d("ShareButton" , "Cancelled");
+//                            else
+//                                Log.d("ShareButton" , "Cancelled");
+//                        }
+//
+//                        public void onError(SocialAuthError e) {
+//
+//                        }
+//                    },false);
+//                    Log.d("Response Listener","onComplete() executing!");
+
+
 
             // Toast.makeText(getApplicationContext(),
             // "login with"+providerName, Toast.LENGTH_SHORT).show();

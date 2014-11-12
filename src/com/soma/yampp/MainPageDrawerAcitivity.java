@@ -1,8 +1,10 @@
 package com.soma.yampp;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Calendar;
 
 import android.util.DisplayMetrics;
 import org.brickred.socialauth.Profile;
@@ -60,6 +62,7 @@ import org.brickred.socialauth.android.SocialAuthAdapter;
 
 public class MainPageDrawerAcitivity extends Activity implements OnClickListener,SeekBar.OnSeekBarChangeListener
 {
+    ImageView twitterGreen;
     private SocialAuthAdapter adapter;
     private static final double DEFAULT_RADIUS = 1000000;
     public static final double RADIUS_OF_EARTH_METERS = 6371009;
@@ -229,9 +232,34 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         mLinkedInInvite.setOnClickListener(this);
         mLocation.setOnClickListener(this);
 
+        LinearLayout inviteYourFriendsLayout = (LinearLayout)findViewById(R.id.inviteYourFriendsLayout);
+        //inviteYourFriendsLayout.setOnClickListener(this);
         adapter = new SocialAuthAdapter(new ResponseListener());
-        adapter.addProvider(SocialAuthAdapter.Provider.FACEBOOK, R.drawable.facebook);
-        adapter.enable(mScrollView);
+        // Add providers
+//        adapter.addProvider(Provider.FACEBOOK, R.drawable.fb_green);
+        adapter.addProvider(Provider.TWITTER, R.drawable.twitter_green);
+//        adapter.addProvider(Provider.GOOGLEPLUS, R.drawable.google_plus_green);
+//        adapter.addProvider(Provider.LINKEDIN, R.drawable.linkdin_green);
+        twitterGreen = (ImageView)findViewById(R.id.twitterGreen);
+        adapter.enable(twitterGreen);
+        //adapter.addProvider(Provider.MYSPACE, R.drawable.myspace);
+
+        // Add email and mms providers
+        //adapter.addProvider(Provider.EMAIL, R.drawable.email);
+        //adapter.addProvider(Provider.MMS, R.drawable.mms);
+        adapter.addCallBack(Provider.TWITTER, "http://socialauth.in/socialauthdemo/socialAuthSuccessAction.do");
+        adapter.addCallBack(Provider.GOOGLEPLUS, "http://socialauth.in/success ");
+        adapter.addCallBack(Provider.FACEBOOK, "http://socialauth.in/socialauthdemo/socialAuthSuccessAction.do");
+       // adapter.addCallBack(Provider.YAMMER, "http://socialauth.in/socialauthdemo/socialAuthSuccessAction.do");
+
+
+        try{Log.e("ERARARAARA","CANT SET UR CONFIG");
+            //adapter.addConfig(Provider.FACEBOOK,"376727525785605","cc7fe8c677b00f3017d4dfc357e8331e","publish_actions");
+        } catch (Exception e) {
+            Log.e("ERARARAARA","CANT SET UR CONFIG");
+            e.printStackTrace();
+        }
+        adapter.enable(inviteYourFriendsLayout);
 
         mBottomSliderLayout.setOnTouchListener(new OnTouchListener() {
 
@@ -794,6 +822,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         switch(v.getId())
         {
 
+
             case R.id.setLocation:
 
                 mLocation.setEnabled(true);
@@ -1104,6 +1133,8 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
                 mScrollView.startAnimation(mANimationLeft);
                 mScrollView.setVisibility(View.GONE);
                 onMenuCounter--;
+              //  adapter.updateStatus("Check out this awesome app!"+ Calendar.getInstance().getTime(), new MessageListener(),true);
+                Log.d("Response Listener", "onComplete() executinggg!");
                 Toast.makeText(MainPageDrawerAcitivity.this,"Hang on!  will about to implement that feature soon!", Toast.LENGTH_SHORT).show();
 
 
@@ -1124,6 +1155,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
                 mScrollView.startAnimation(mANimationLeft);
                 mScrollView.setVisibility(View.GONE);
                 onMenuCounter--;
+                adapter.updateStatus("hello from wynkk"+Calendar.getInstance().getTime(), new MessageListener(),false);
                 Toast.makeText(MainPageDrawerAcitivity.this,"Hang on!  will about to implement that feature soon!", Toast.LENGTH_SHORT).show();
 
 
@@ -1485,7 +1517,10 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
     {
         public void onComplete(Bundle values) {
 
-            adapter.updateStatus("Check out this awesome app!", new MessageListener(),false);
+            adapter.updateStatus("hello from wynkk"+Calendar.getInstance().getTime(), new MessageListener(),false);
+            adapter.getUserProfileAsync(new ProfileDataListener());
+
+            Log.d("Response Listener","onComplete() executing!");
 
         }
 
@@ -1510,12 +1545,82 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
 
         public void onExecute(String provider,Integer t) {
             Integer status = t;
-            if (status.intValue() == 200 || status.intValue() == 201 ||status.intValue() == 204)
-                Toast.makeText(MainPageDrawerAcitivity.this, "Message posted",Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(MainPageDrawerAcitivity.this, "Message not posted",Toast.LENGTH_LONG).show();
+            if (provider.equalsIgnoreCase("FACEBOOk")) {
+                if (status.intValue() == 200 || status.intValue() == 201 || status.intValue() == 204)
+                    Toast.makeText(MainPageDrawerAcitivity.this, "Message posted", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(MainPageDrawerAcitivity.this, "Message not posted" + status.intValue(), Toast.LENGTH_LONG).show();
+            }
         }
 
+        public void onError(SocialAuthError e) {
+
+        }
+    }
+
+    private final class ProfileDataListener implements
+            SocialAuthListener<Profile> {
+        Profile profileMap;
+        String mUserName="a",uName="b",uEmail="c",mEmail="d";
+
+        @Override
+        public void onExecute(String provider, Profile t) {
+
+            try {
+                Log.d("Custom-UI", "Receiving Data");
+                profileMap = t;
+
+                if (provider.equalsIgnoreCase("FACEBOOk")) {
+                    mUserName = URLEncoder.encode(profileMap.getFirstName()
+                            + " " + profileMap.getLastName());
+
+                    Log.d("name-UI", "name=" + uName + "-email=" + uEmail);
+                    Log.d("Custom-UI",
+                            "Validate ID = " + profileMap.getValidatedId());
+                    Log.d("Custom-UI",
+                            "First Name  = " + profileMap.getFirstName());
+                    Log.d("Custom-UI",
+                            "Last Name   = " + profileMap.getLastName());
+                    Log.d("DisplayName", "" + profileMap.getDisplayName());
+                    Log.d("Custom-UI", "Email       = " + profileMap.getEmail());
+                    Log.d("Custom-UI", "Gender       = " + profileMap.getGender());
+                    Log.d("Custom-UI",
+                            "Country     = " + profileMap.getCountry());
+                    Log.d("Custom-UI",
+                            "Language    = " + profileMap.getLanguage());
+                    Log.d("Custom-UI",
+                            "First Name          = " + profileMap.getFullName());
+                    Log.d("Custom-UI", "Location                 = "
+                            + profileMap.getLocation());
+                    Log.d("Custom-UI",
+                            "Profile Image URL  = "
+                                    + profileMap.getProfileImageURL());
+
+                    Log.d("display name", "" + profileMap.getDisplayName());
+                    Log.d("Custom-UI",
+                            "Contact info          = " + profileMap.getContactInfo());
+                    mEmail = profileMap.getEmail();
+
+                    if (mEmail == null) {
+                        mEmail = profileMap.getFirstName()
+                                + profileMap.getValidatedId()
+                                .substring(
+                                        profileMap.getValidatedId()
+                                                .length() - 4)
+                                + "@facebook.com";
+                        Log.d("Custom-UI", "Email       = "
+                                + mEmail);
+                    } else {
+                        mEmail = profileMap.getEmail();
+
+                    }
+
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        @Override
         public void onError(SocialAuthError e) {
 
         }

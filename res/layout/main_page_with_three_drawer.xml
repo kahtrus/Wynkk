@@ -739,6 +739,7 @@
                 android:textStyle="bold" />
 
             <LinearLayout
+                    android:id="@+id/inviteYourFriendsLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="150dp"

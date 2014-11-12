@@ -4,5 +4,6 @@
     <string name="app_name">YAMPP_4.0</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="facebook_app_id">376727525785605</string>
 
 </resources>

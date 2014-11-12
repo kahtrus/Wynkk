@@ -21,6 +21,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WRITE_SOCIAL_STREAM"/>
+    <uses-permission android:name="android.permission.READ_SOCIAL_STREAM"/>
 
     <application
         android:allowBackup="true"
@@ -33,13 +35,21 @@
             android:required="false" />
 
         <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
+        <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <!--<development key hashes="ga0RGNYHvNM5d0SLGQfpQWAPGJ8="/>-->
+        <!--<development key hashes="M8wDGT24Nh/lHS49ys2DPMh99O4="/>-->
+
         <!--<debug key="AIzaSyD6yh1Q3vDONrJvt6KgJQIDXlw51BBIgqM"/>-->
         <!--<release key="AIzaSyB9T3fBp_CDhZ1s6UV2k7ojOAa4uspoJ2Q"/>-->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyB9T3fBp_CDhZ1s6UV2k7ojOAa4uspoJ2Q" />
+            android:value="AIzaSyD6yh1Q3vDONrJvt6KgJQIDXlw51BBIgqM" />
 
         <activity
             android:name="com.soma.yampp.FirstActivity"

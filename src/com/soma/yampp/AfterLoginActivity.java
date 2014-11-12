@@ -413,7 +413,8 @@ public class AfterLoginActivity extends Activity implements OnClickListener
 
             switch (getServerResponse) {
                 case 1:
-                    Intent intent=new Intent(AfterLoginActivity.this,MainPageWithMapActivity.class);
+                    Intent intent=new Intent(AfterLoginActivity.this,MainPageDrawerAcitivity.class);
+                    //Intent intent=new Intent(AfterLoginActivity.this,MainPageWithMapActivity.class);
                     startActivity(intent);
                     AfterLoginActivity.this.finish();
 
