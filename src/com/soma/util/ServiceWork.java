@@ -112,7 +112,12 @@ public class ServiceWork extends AsyncTask<Void, Void, JSONObject> {
                     mResult=com.converResponseToString(mInputStreamis);
 
                     if(!(mResult.equals("")))
-                    {						
+                    {
+                        JSONObject ooo = new JSONObject(mResult);
+
+                        String stat=ooo.getString("status");
+                        Log.e("REGISTER RESULT",stat);
+                        Log.e("REGISTER RESULT",ooo.toString());
 
                         if(CommonFunction.sActivityName.equals("SocialMedia"))
                         {

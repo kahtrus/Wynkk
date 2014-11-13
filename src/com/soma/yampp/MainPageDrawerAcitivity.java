@@ -62,6 +62,9 @@ import org.brickred.socialauth.android.SocialAuthAdapter;
 
 public class MainPageDrawerAcitivity extends Activity implements OnClickListener,SeekBar.OnSeekBarChangeListener
 {
+    String messageToShare="Hello From Wynkk";
+    ImageButton mShareSocial;
+    Button mShareSocialInvis;
     ImageView twitterGreen;
     private SocialAuthAdapter adapter;
     private static final double DEFAULT_RADIUS = 1000000;
@@ -232,16 +235,18 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         mLinkedInInvite.setOnClickListener(this);
         mLocation.setOnClickListener(this);
 
+
+
         LinearLayout inviteYourFriendsLayout = (LinearLayout)findViewById(R.id.inviteYourFriendsLayout);
         //inviteYourFriendsLayout.setOnClickListener(this);
         adapter = new SocialAuthAdapter(new ResponseListener());
         // Add providers
-//        adapter.addProvider(Provider.FACEBOOK, R.drawable.fb_green);
+        adapter.addProvider(Provider.FACEBOOK, R.drawable.fb_green);
         adapter.addProvider(Provider.TWITTER, R.drawable.twitter_green);
-//        adapter.addProvider(Provider.GOOGLEPLUS, R.drawable.google_plus_green);
-//        adapter.addProvider(Provider.LINKEDIN, R.drawable.linkdin_green);
+        adapter.addProvider(Provider.GOOGLEPLUS, R.drawable.google_plus_green);
+        adapter.addProvider(Provider.LINKEDIN, R.drawable.linkdin_green);
         twitterGreen = (ImageView)findViewById(R.id.twitterGreen);
-        adapter.enable(twitterGreen);
+
         //adapter.addProvider(Provider.MYSPACE, R.drawable.myspace);
 
         // Add email and mms providers
@@ -251,15 +256,9 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         adapter.addCallBack(Provider.GOOGLEPLUS, "http://socialauth.in/success ");
         adapter.addCallBack(Provider.FACEBOOK, "http://socialauth.in/socialauthdemo/socialAuthSuccessAction.do");
        // adapter.addCallBack(Provider.YAMMER, "http://socialauth.in/socialauthdemo/socialAuthSuccessAction.do");
-
-
-        try{Log.e("ERARARAARA","CANT SET UR CONFIG");
-            //adapter.addConfig(Provider.FACEBOOK,"376727525785605","cc7fe8c677b00f3017d4dfc357e8331e","publish_actions");
-        } catch (Exception e) {
-            Log.e("ERARARAARA","CANT SET UR CONFIG");
-            e.printStackTrace();
-        }
-        adapter.enable(inviteYourFriendsLayout);
+       // Log.e(TAG,mShareSocial.getContext().toString());
+        // adapter.enable(twitterGreen);
+        //adapter.enable(mShareSocialInvis);
 
         mBottomSliderLayout.setOnTouchListener(new OnTouchListener() {
 
@@ -396,7 +395,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
 
             // Use default InfoWindow frame
             @Override
-            public View getInfoWindow(Marker arg0) {               
+            public View getInfoWindow(Marker arg0) {
                 return null;
             }           
 
@@ -406,6 +405,9 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
 
                 // Getting view from the layout file info_window_layout_xml
                 View view = getLayoutInflater().inflate(R.layout.info_window_layout_xml, null);
+                mShareSocial = (ImageButton)view.findViewById(R.id.mShareSocial);
+                mShareSocialInvis = (Button)view.findViewById(R.id.mShareSocialInvis);
+                adapter.enable(mShareSocialInvis);
                 DisplayMetrics displaymetrics = new DisplayMetrics();
                 getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
                 int width = displaymetrics.widthPixels;
@@ -430,6 +432,8 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
 
                     String text = "<font color=#ffffff>"+CommonFunction.sSearchYammp.get(pos).get_Username()+"</font>"+"@"+CommonFunction.sSearchYammp.get(pos).get_location();
                     mAddress.setText(Html.fromHtml(text));
+                    messageToShare = mCommentText.getText().toString() +" @"+ mAddress.getText().toString()+
+                    "\ncheck out this awesome app! http://wynkk.co";
 
                     if(CommonFunction.sSearchYammp.get(pos).get_monkey_icon().equalsIgnoreCase("monkey_1"))
                     {
@@ -460,6 +464,13 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
 
         }); 
 
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                if(mShareSocial!=null)
+                    mShareSocialInvis.performClick();
+            }
+        });
 
         map.setOnMapLongClickListener(new OnMapLongClickListener() {
 
@@ -1517,7 +1528,8 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
     {
         public void onComplete(Bundle values) {
 
-            adapter.updateStatus("hello from wynkk"+Calendar.getInstance().getTime(), new MessageListener(),false);
+            adapter.updateStatus(messageToShare, new MessageListener(),false);
+            //adapter.updateStatus("hello from wynkk"+Calendar.getInstance().getTime(), new MessageListener(),false);
             adapter.getUserProfileAsync(new ProfileDataListener());
 
             Log.d("Response Listener","onComplete() executing!");

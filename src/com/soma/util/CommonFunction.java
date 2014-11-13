@@ -58,10 +58,10 @@ public class CommonFunction {
     //public static String host="http://14.102.54.190/yampp/Webservices/";
     //public static String Image_Url="http://14.102.54.190/yampp/app/webroot/img/photo/";
 
-    public static String host="http://wynkk.co/Webservices/";
-    public static String Image_Url="http://wynkk.co/app/webroot/img/photo/";
-    //public static String host="http://yampp.net/Webservices/";
-    //public static String Image_Url="http://yampp.net/app/webroot/img/photo/";
+    //public static String host="http://wynkk.co/Webservices/";
+    //public static String Image_Url="http://wynkk.co/app/webroot/img/photo/";
+    public static String host="http://yampp.net/Webservices/";
+    public static String Image_Url="http://yampp.net/app/webroot/img/photo/";
 
     public  static ArrayList<com.soma.model.SignupModel.Data> sUserInfo=new ArrayList<com.soma.model.SignupModel.Data>();
     public  static ArrayList<com.soma.model.SearchYamppMOdel.Data> sSearchYammp=new ArrayList<com.soma.model.SearchYamppMOdel.Data>();
