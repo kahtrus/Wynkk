@@ -57,11 +57,12 @@ public class CommonFunction {
 
     //public static String host="http://14.102.54.190/yampp/Webservices/";
     //public static String Image_Url="http://14.102.54.190/yampp/app/webroot/img/photo/";
-
-    //public static String host="http://wynkk.co/Webservices/";
-    //public static String Image_Url="http://wynkk.co/app/webroot/img/photo/";
-    public static String host="http://yampp.net/Webservices/";
-    public static String Image_Url="http://yampp.net/app/webroot/img/photo/";
+//CAAFWobZAaAAUBAAHPN89sViZCJx63x1AX0Q8BGakEOhagh9RcazbctiGHCCP3whAFldXmOiFYyWoCHBBztd4Lgpn2RSw4oMzCYy6WkJORSHTZCfvV2hzKHypagvpDfRT8yPWVz1QerB1vTirmoBXETCQNLongfr2AHDfQTMBPKB9PmWU3DNNeUN3ZCZB93Exw3CUSVIslswkZA1lWsAJ4W
+//CAAFWobZAaAAUBAMwBRCZAcyCpHROqiY8jsC8Li59HgMGzBUl0blZAki7Fstv4VcxEPSyNDDYFiFBeJ89E0ufGO34iX4xaUjtLqsXXioANhE8S8v3P3hWO6GA3cZAJqLZBftOac3eP5wUE08AdfsYBP00x14Gk3NqVKGzNALddPTFr0EtH3I9LZBvJLtyQBbrZCYg3tr7qOhJWnxw0QMMOu6
+    public static String host="http://wynkk.co/Webservices/";
+    public static String Image_Url="http://wynkk.co/app/webroot/img/photo/";
+   // public static String host="http://yampp.net/Webservices/";
+   // public static String Image_Url="http://yampp.net/app/webroot/img/photo/";
 
     public  static ArrayList<com.soma.model.SignupModel.Data> sUserInfo=new ArrayList<com.soma.model.SignupModel.Data>();
     public  static ArrayList<com.soma.model.SearchYamppMOdel.Data> sSearchYammp=new ArrayList<com.soma.model.SearchYamppMOdel.Data>();

@@ -5,8 +5,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Calendar;
+import java.util.List;
 
+import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
+import android.view.*;
+import com.soma.model.SearchYamppMOdel;
 import org.brickred.socialauth.Profile;
 import org.brickred.socialauth.android.DialogListener;
 import org.brickred.socialauth.android.SocialAuthAdapter;
@@ -37,12 +41,8 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
@@ -62,6 +62,7 @@ import org.brickred.socialauth.android.SocialAuthAdapter;
 
 public class MainPageDrawerAcitivity extends Activity implements OnClickListener,SeekBar.OnSeekBarChangeListener
 {
+    private ListView lastWynkksList;
     String messageToShare="Hello From Wynkk";
     ImageButton mShareSocial;
     Button mShareSocialInvis;
@@ -236,6 +237,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         mLocation.setOnClickListener(this);
 
 
+        lastWynkksList = (ListView)findViewById(R.id.lastCommentsList);
 
         LinearLayout inviteYourFriendsLayout = (LinearLayout)findViewById(R.id.inviteYourFriendsLayout);
         //inviteYourFriendsLayout.setOnClickListener(this);
@@ -244,7 +246,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         adapter.addProvider(Provider.FACEBOOK, R.drawable.fb_green);
         adapter.addProvider(Provider.TWITTER, R.drawable.twitter_green);
         adapter.addProvider(Provider.GOOGLEPLUS, R.drawable.google_plus_green);
-        adapter.addProvider(Provider.LINKEDIN, R.drawable.linkdin_green);
+        adapter.addProvider(Provider.INSTAGRAM, R.drawable.linkdin_green);
         twitterGreen = (ImageView)findViewById(R.id.twitterGreen);
 
         //adapter.addProvider(Provider.MYSPACE, R.drawable.myspace);
@@ -254,6 +256,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         //adapter.addProvider(Provider.MMS, R.drawable.mms);
         adapter.addCallBack(Provider.TWITTER, "http://socialauth.in/socialauthdemo/socialAuthSuccessAction.do");
         adapter.addCallBack(Provider.GOOGLEPLUS, "http://socialauth.in/success ");
+        adapter.addCallBack(Provider.INSTAGRAM,"http://wynkk.co/");
         adapter.addCallBack(Provider.FACEBOOK, "http://socialauth.in/socialauthdemo/socialAuthSuccessAction.do");
        // adapter.addCallBack(Provider.YAMMER, "http://socialauth.in/socialauthdemo/socialAuthSuccessAction.do");
        // Log.e(TAG,mShareSocial.getContext().toString());
@@ -418,12 +421,15 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
                 TextView mMinimizeMarker=(TextView)view.findViewById(R.id.minimizeMarker);
                 String id=marker.getTitle();
 
-                if(id.equals("Your position")) {
-                    Log.d(TAG, id);
+
+                if(id==null) {
                     return null;
                 }else
-                if(id!=null)
-                {
+                if(id.equals("Your position")) {
+                        return null;
+                }else {
+                    Log.d(TAG, id);
+
                     int pos=Integer.parseInt(id);
                     Log.d("Marker pos",""+marker.getPosition());
                     Log.d("your position is",""+id);
@@ -1277,6 +1283,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         }
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(position1, 8));
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(position1, 8));
+        setupAdapter();
 
     }
 
@@ -1636,6 +1643,58 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         public void onError(SocialAuthError e) {
 
         }
+    }
+
+    public void setupAdapter(){
+        if(CommonFunction.sSearchYammp!=null) {
+            WynkkListAdapter adapter = new WynkkListAdapter(this, R.layout.last_comments_list_item, CommonFunction.sSearchYammp);
+            lastWynkksList.setVisibility(View.VISIBLE);
+
+            lastWynkksList.setAdapter(adapter);
+        }
+
+
+
+    }
+    private class WynkkListAdapter extends ArrayAdapter<SearchYamppMOdel.Data>{
+
+        public WynkkListAdapter(Context context, int resource, List<SearchYamppMOdel.Data> wynkks) {
+            super(context, resource, wynkks);
+
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if(convertView==null){
+                convertView = getLayoutInflater().inflate(R.layout.last_comments_list_item,null);
+            }
+            SearchYamppMOdel.Data wynkk = getItem(position);
+            TextView place = (TextView)convertView.findViewById(R.id.list_item_placeText);
+            TextView time = (TextView)convertView.findViewById(R.id.list_item_timeText);
+            ImageView image = (ImageView)convertView.findViewById(R.id.list_item_imageView);
+            try {
+                //Log.d(TAG,wynkk.get_Time());
+                place.setText(wynkk.get_location().split(",")[0]);
+                time.setText(wynkk.get_comment());
+                int imgResId=R.drawable.monkey_5;
+                if(wynkk.get_monkey_icon().equalsIgnoreCase("monkey_5")){
+
+                }else if(wynkk.get_monkey_icon().equalsIgnoreCase("monkey_4")){
+                    imgResId = R.drawable.monkey_4;
+                }else if(wynkk.get_monkey_icon().equalsIgnoreCase("monkey_3")){
+                    imgResId = R.drawable.monkey_3;
+                }else if(wynkk.get_monkey_icon().equalsIgnoreCase("monkey_2")){
+                    imgResId = R.drawable.monkey_2;
+                }else if(wynkk.get_monkey_icon().equalsIgnoreCase("monkey_1")){
+                    imgResId = R.drawable.monkey_1;
+                }
+                image.setImageResource(imgResId);
+            }catch(Exception e ){
+                e.printStackTrace();
+            }
+            return convertView;
+        }
+
     }
 
 

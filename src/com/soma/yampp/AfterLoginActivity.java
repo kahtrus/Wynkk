@@ -133,10 +133,12 @@ public class AfterLoginActivity extends Activity implements OnClickListener
                                 InputStream is=mURL.openConnection().getInputStream();
                                 CommonFunction com=new CommonFunction();
                                 mResult=com.converResponseToString(is);
+                                Log.e("AFTER LOGIN RES",mResult);
                                 JSONObject o = new JSONObject(mResult);
                                 String status=o.getString("status");
+                                Log.e("AFTER LOGIN",status);
 
-                                if(status.equalsIgnoreCase("1"))
+                                if(status.equalsIgnoreCase("0"))
                                 {
                                     SignUpValidateCheckResponse=1;
                                 }

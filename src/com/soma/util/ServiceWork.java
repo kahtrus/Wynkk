@@ -102,7 +102,7 @@ public class ServiceWork extends AsyncTask<Void, Void, JSONObject> {
             // Log.d("the url is 123","activateSignupDetailUrl");
             String activateSignupDetailUrl;
             activateSignupDetailUrl = com.GetServiceUrl(mUrl);
-            Log.d("the url is",activateSignupDetailUrl);
+            Log.d("SERVICE WORK the url is",activateSignupDetailUrl);
             try{			
                 mInputStreamis = com.connectionEstablished(activateSignupDetailUrl);
 
@@ -113,10 +113,13 @@ public class ServiceWork extends AsyncTask<Void, Void, JSONObject> {
 
                     if(!(mResult.equals("")))
                     {
+                        Log.e("REGISTER RESULT YYOYOYO",mResult);
+                        Log.e("REGISTER RESULT YYOYOYO",CommonFunction.sActivityName);
                         JSONObject ooo = new JSONObject(mResult);
 
                         String stat=ooo.getString("status");
                         Log.e("REGISTER RESULT",stat);
+                        Log.e("REGISTER RESULT",mUrl);
                         Log.e("REGISTER RESULT",ooo.toString());
 
                         if(CommonFunction.sActivityName.equals("SocialMedia"))
@@ -148,6 +151,8 @@ public class ServiceWork extends AsyncTask<Void, Void, JSONObject> {
 
                         if(CommonFunction.sActivityName.equals("MainPageWithMapActivity"))
                         {
+
+                            Log.e("if blabla MainPageWithMapActivity",mResult);
                             JSONObject o = new JSONObject(mResult);
 
                             String status=o.getString("status");
@@ -322,6 +327,7 @@ Log.d("size=",CommonFunction.sSearchYammp.size()+"");
                         }
 
                     }
+                    //Log.e("SIGNUP","NO RESULT (((((((((((((((((((9 ");
                 }
             }catch (Exception e) {
                 SignUpValidateCheckResponse=15;

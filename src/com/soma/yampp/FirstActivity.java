@@ -4,6 +4,9 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import org.brickred.socialauth.Profile;
 import org.brickred.socialauth.android.DialogListener;
 import org.brickred.socialauth.android.SocialAuthAdapter;
@@ -154,7 +157,7 @@ public class FirstActivity extends Activity implements OnClickListener
 //        new ServiceWork(url, FirstActivity.this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 //        
         } else {
-
+            buildDialog(this,"enable gps please").show();
             return;
         }
         // calling background Async task to load Google Places
@@ -533,84 +536,80 @@ mShowMapTxt.setOnClickListener(this);
     @Override
     public void onClick(View v) 
     {
-        CommonFunction com=new CommonFunction();
-        switch (v.getId()) {
-            
-            case R.id.mSocial:
-                if(counter==0)
-                {
-               
-                mSocialTxt.setText("Show map");
-                mBottomLayout.setVisibility(View.VISIBLE);
-                mBottomLayout.startAnimation(animUp);
-                counter++;
-                }
-                else
-                {
-                    counter--;
-                    mSocialTxt.setText("login/register with social media");
-                    mBottomLayout.startAnimation(animDown);
-                    mBottomLayout.setVisibility(View.GONE);
-                }
-                break;
-            
-                         
-            case R.id.mFbShare:
+     if(!CommonFunction.isInternetOn(FirstActivity.this)){
+        buildDialog(this,"You need to enable internet connection!").show();
+      }else {
+         CommonFunction com = new CommonFunction();
+         switch (v.getId()) {
 
-                if(CommonFunction.isInternetOn(FirstActivity.this))
-                {    
-                    sProvider = "1";
-                    viewProgressVisible("Please Wait");
-                    adapter.authorize(FirstActivity.this, Provider.FACEBOOK);
-                }
-                break;
+             case R.id.mSocial:
+                 if (counter == 0) {
 
-            case R.id.mTweetShare:
-                if(CommonFunction.isInternetOn(FirstActivity.this))
-                {    
-                    sProvider = "2";
-                    viewProgressVisible("Please Wait");
-                    adapter.authorize(FirstActivity.this, Provider.TWITTER);
-                }
-                break;
+                     mSocialTxt.setText("Show map");
+                     mBottomLayout.setVisibility(View.VISIBLE);
+                     mBottomLayout.startAnimation(animUp);
+                     counter++;
+                 } else {
+                     counter--;
+                     mSocialTxt.setText("login/register with social media");
+                     mBottomLayout.startAnimation(animDown);
+                     mBottomLayout.setVisibility(View.GONE);
+                 }
+                 break;
 
-            case R.id.mGplusShare:
-                if(CommonFunction.isInternetOn(FirstActivity.this))
-                {    
-                    sProvider = "3";
-                    viewProgressVisible("Please Wait");
-                    adapter.authorize(FirstActivity.this, Provider.GOOGLEPLUS);
-                }
-                break;
 
-            case R.id.mLinkedInShare:
-                if(CommonFunction.isInternetOn(FirstActivity.this))
-                {    
-                    sProvider = "4";
-                    viewProgressVisible("Please Wait");
-                    adapter.authorize(FirstActivity.this, Provider.LINKEDIN);
-                }
+             case R.id.mFbShare:
 
-                break;
+                 if (CommonFunction.isInternetOn(FirstActivity.this)) {
+                     sProvider = "1";
+                     viewProgressVisible("Please Wait");
+                     adapter.authorize(FirstActivity.this, Provider.FACEBOOK);
+                 }
+                 break;
 
-            case R.id.mInstagram:
-                if(CommonFunction.isInternetOn(FirstActivity.this))
-                {    
-                    sProvider = "5";
-                    viewProgressVisible("Please Wait");
-                    adapter.authorize(FirstActivity.this, Provider.INSTAGRAM);
-                }
-                break;
+             case R.id.mTweetShare:
+                 if (CommonFunction.isInternetOn(FirstActivity.this)) {
+                     sProvider = "2";
+                     viewProgressVisible("Please Wait");
+                     adapter.authorize(FirstActivity.this, Provider.TWITTER);
+                 }
+                 break;
 
-            case R.id.mPinterest:
+             case R.id.mGplusShare:
+                 if (CommonFunction.isInternetOn(FirstActivity.this)) {
+                     sProvider = "3";
+                     viewProgressVisible("Please Wait");
+                     adapter.authorize(FirstActivity.this, Provider.GOOGLEPLUS);
+                 }
+                 break;
 
-                Toast.makeText(FirstActivity.this, "Hang on! were about to implement that feature soon!", Toast.LENGTH_SHORT).show();
+             case R.id.mLinkedInShare:
+                 if (CommonFunction.isInternetOn(FirstActivity.this)) {
+                     sProvider = "4";
+                     viewProgressVisible("Please Wait");
+                     adapter.authorize(FirstActivity.this, Provider.LINKEDIN);
+                 }
 
-                break;
+                 break;
 
-            default:
-                break;
-        } 
+             case R.id.mInstagram:
+                 if (CommonFunction.isInternetOn(FirstActivity.this)) {
+                     sProvider = "5";
+                     viewProgressVisible("Please Wait");
+                     adapter.authorize(FirstActivity.this, Provider.INSTAGRAM);
+                 }
+                 break;
+
+             case R.id.mPinterest:
+
+                 Toast.makeText(FirstActivity.this, "Hang on! were about to implement that feature soon!", Toast.LENGTH_SHORT).show();
+
+                 break;
+
+             default:
+                 break;
+         }
+     }
 
     }
 
@@ -753,5 +752,23 @@ mShowMapTxt.setOnClickListener(this);
         progressBar.setMessage(paramString);
 
         progressBar.show();
+    }
+
+    public AlertDialog.Builder buildDialog(Context c, String msg) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setTitle("No Internet connection.");
+        builder.setMessage(msg);
+
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+            }
+        });
+
+        return builder;
     }
 }
