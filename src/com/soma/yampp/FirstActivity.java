@@ -145,7 +145,7 @@ public class FirstActivity extends Activity implements OnClickListener
 //              .fillColor(0x40ff0000)
 //              .strokeColor(Color.TRANSPARENT)
 //              .strokeWidth(2);
-//             
+//
 //            // Get back the mutable Circle
 //             map.addCircle(circleOptions);
 //           // 35.1849925,-101.9502058
@@ -544,7 +544,6 @@ mShowMapTxt.setOnClickListener(this);
 
              case R.id.mSocial:
                  if (counter == 0) {
-
                      mSocialTxt.setText("Show map");
                      mBottomLayout.setVisibility(View.VISIBLE);
                      mBottomLayout.startAnimation(animUp);
@@ -559,45 +558,34 @@ mShowMapTxt.setOnClickListener(this);
 
 
              case R.id.mFbShare:
-
-                 if (CommonFunction.isInternetOn(FirstActivity.this)) {
-                     sProvider = "1";
-                     viewProgressVisible("Please Wait");
-                     adapter.authorize(FirstActivity.this, Provider.FACEBOOK);
-                 }
+                 sProvider = "1";
+                 viewProgressVisible("Please Wait");
+                 adapter.authorize(FirstActivity.this, Provider.FACEBOOK);
                  break;
 
              case R.id.mTweetShare:
-                 if (CommonFunction.isInternetOn(FirstActivity.this)) {
-                     sProvider = "2";
-                     viewProgressVisible("Please Wait");
-                     adapter.authorize(FirstActivity.this, Provider.TWITTER);
-                 }
+
+                 sProvider = "2";
+                 viewProgressVisible("Please Wait");
+                 adapter.authorize(FirstActivity.this, Provider.TWITTER);
                  break;
 
              case R.id.mGplusShare:
-                 if (CommonFunction.isInternetOn(FirstActivity.this)) {
-                     sProvider = "3";
-                     viewProgressVisible("Please Wait");
-                     adapter.authorize(FirstActivity.this, Provider.GOOGLEPLUS);
-                 }
+                 sProvider = "3";
+                 viewProgressVisible("Please Wait");
+                 adapter.authorize(FirstActivity.this, Provider.GOOGLEPLUS);
                  break;
 
              case R.id.mLinkedInShare:
-                 if (CommonFunction.isInternetOn(FirstActivity.this)) {
-                     sProvider = "4";
-                     viewProgressVisible("Please Wait");
-                     adapter.authorize(FirstActivity.this, Provider.LINKEDIN);
-                 }
-
-                 break;
+                 sProvider = "4";
+                 viewProgressVisible("Please Wait");
+                 adapter.authorize(FirstActivity.this, Provider.LINKEDIN);
+                break;
 
              case R.id.mInstagram:
-                 if (CommonFunction.isInternetOn(FirstActivity.this)) {
-                     sProvider = "5";
-                     viewProgressVisible("Please Wait");
-                     adapter.authorize(FirstActivity.this, Provider.INSTAGRAM);
-                 }
+                 sProvider = "5";
+                 viewProgressVisible("Please Wait");
+                 adapter.authorize(FirstActivity.this, Provider.INSTAGRAM);
                  break;
 
              case R.id.mPinterest:

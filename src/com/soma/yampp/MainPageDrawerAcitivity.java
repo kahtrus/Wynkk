@@ -10,6 +10,7 @@ import java.util.List;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.view.*;
+import android.view.inputmethod.InputMethodManager;
 import com.soma.model.SearchYamppMOdel;
 import org.brickred.socialauth.Profile;
 import org.brickred.socialauth.android.DialogListener;
@@ -194,6 +195,8 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         mUserNme.setTypeface(typeface);
         mUserNameTxt.setTypeface(typeface);
         mLocation.setTypeface(typeface);
+        mLocation.setTextSize(14.0f);
+        mLocation.setTypeface(Typeface.create(Typeface.SANS_SERIF,Typeface.BOLD));
         mComments.setTypeface(typeface);
         mSearchTxt.setTypeface(typeface);
         mOneHour.setTypeface(typeface);
@@ -257,7 +260,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         adapter.addCallBack(Provider.TWITTER, "http://socialauth.in/socialauthdemo/socialAuthSuccessAction.do");
         adapter.addCallBack(Provider.GOOGLEPLUS, "http://socialauth.in/success ");
         adapter.addCallBack(Provider.INSTAGRAM,"http://wynkk.co/");
-        adapter.addCallBack(Provider.FACEBOOK, "http://socialauth.in/socialauthdemo/socialAuthSuccessAction.do");
+        adapter.addCallBack(Provider.FACEBOOK, "http://wynkk.co/");
        // adapter.addCallBack(Provider.YAMMER, "http://socialauth.in/socialauthdemo/socialAuthSuccessAction.do");
        // Log.e(TAG,mShareSocial.getContext().toString());
         // adapter.enable(twitterGreen);
@@ -1028,10 +1031,19 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
                             ListViewForPlaces.listCheckClick=0;
                             sFlag2=1;
                             mComments.setText("");
+                            mComments.clearFocus();
+
+                            mSendComment.requestFocus();
                             mLocation.setText(ServiceWork.businessSearchData.get(0).getPlaceAddress());
                             mEmoticon.setImageResource(R.drawable.monkey_5);
                             mScrollHori.setVisibility(View.GONE);
                             commentMethodStartsTheAsyncTask();
+                            InputMethodManager inputManager =
+                                    (InputMethodManager) this.
+                                            getSystemService(Context.INPUT_METHOD_SERVICE);
+                            inputManager.hideSoftInputFromWindow(
+                                    this.getCurrentFocus().getWindowToken(),
+                                    InputMethodManager.HIDE_NOT_ALWAYS);
                         }
                         else
                         {
@@ -1140,8 +1152,9 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
                 mScrollView.startAnimation(mANimationLeft);
                 mScrollView.setVisibility(View.GONE);
                 onMenuCounter--;
-                Toast.makeText(MainPageDrawerAcitivity.this,"Hang on!  will about to implement that feature soon!", Toast.LENGTH_SHORT).show();
 
+                //Toast.makeText(MainPageDrawerAcitivity.this,"Hang on!  will about to implement that feature soon!", Toast.LENGTH_SHORT).show();
+                logout();
 
                 break;
 
@@ -1695,6 +1708,36 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
             return convertView;
         }
 
+    }
+    private void logout(){
+        if(FirstActivity.mFbFlag)
+        {
+            FirstActivity.mFbFlag=false;
+            //logout from Socail Networking provider
+            FirstActivity.adapter.signOut(getApplicationContext(), Provider.FACEBOOK.toString());
+        }
+        if(FirstActivity.mTwitterFlag)
+        {
+            FirstActivity.mTwitterFlag=false;
+            //logout from Socail Networking provider
+            FirstActivity.adapter.signOut(getApplicationContext(), Provider.TWITTER.toString());
+        }
+        if(FirstActivity.mPlusFlag)
+        {
+            FirstActivity.mPlusFlag=false;
+            //logout from Socail Networking provider
+            FirstActivity.adapter.signOut(getApplicationContext(), Provider.GOOGLEPLUS.toString());
+        }
+        if(FirstActivity.mLinkedFlag)
+        {
+            FirstActivity.mLinkedFlag=false;
+            //logout from Socail Networking provider
+            FirstActivity.adapter.signOut(getApplicationContext(), Provider.LINKEDIN.toString());
+        }
+        Intent   intent =new Intent(MainPageDrawerAcitivity.this,FirstActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
 

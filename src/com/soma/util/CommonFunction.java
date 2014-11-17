@@ -179,28 +179,30 @@ public class CommonFunction {
     }
 
     public static final boolean isInternetOn(Context context) {
-        ConnectivityManager connec = (ConnectivityManager) context
+        ConnectivityManager connect = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         // ARE WE CONNECTED TO THE NET
-        Log.d("Inside", "isInternetOn()");
-        if(true) {
-//        if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
-//                || connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTING
-//                || connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING
-//                || connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED) {
-            Log.d("Checking", "network state");
-            // MESSAGE TO SCREEN FOR TESTING (IF REQ)
-            // Toast.makeText(this, connectionType + � connected�,
-            // Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
-                || connec.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTED) {
-            // System.out.println(�Not Connected�);
-            Log.d("Device in", "disconnectd state");
+        Log.d("Inside ","isInternetOn()");
+        if(connect != null)
+        {
+            NetworkInfo result = connect.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            NetworkInfo result2 = connect.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
-            return false;
+
+            if (result != null && result.isConnectedOrConnecting())
+            {
+                return true;
+            }
+            else
+                if (result2 != null && result.isConnectedOrConnecting())
+                {
+                    return true;
+                } else
+                    return false;
         }
-        return false;
+        else
+            return false;
+
     }
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

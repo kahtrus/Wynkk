@@ -393,7 +393,8 @@
                     android:hint="comment..."
                     android:padding="15dp"
                     android:textColor="#000"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:imeOptions="actionDone"/>
 
                 <ImageView
                     android:id="@+id/mEmoticon"
@@ -425,7 +426,7 @@
         android:layout_above="@id/bottomCommentLayout"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="100dp"
-        android:alpha=".8"
+        android:alpha=".9"
         android:background="@drawable/boundry_xml"
         android:gravity="center"
         android:orientation="vertical"
@@ -454,7 +455,8 @@
                 android:hint="Location*"
                 android:textColor="#fff"
                 android:textColorHint="#fff"
-                android:textSize="12sp" >
+                android:textStyle="bold"
+                android:textSize="14dp" >
 
                 <requestFocus />
             </EditText>
@@ -464,7 +466,7 @@
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight=".2"
-                android:src="@drawable/down_arrow" />
+                android:src="@drawable/down_arrow_blue" />
         </LinearLayout>
         
         <ImageView
@@ -485,7 +487,7 @@
         android:layout_below="@id/mTopHeader"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
-        android:alpha=".85"
+        android:alpha=".9"
         android:background="@drawable/border_three"
         android:gravity="center"
         android:orientation="vertical"
