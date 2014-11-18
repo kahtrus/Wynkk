@@ -53,7 +53,7 @@
             android:value="AIzaSyD6yh1Q3vDONrJvt6KgJQIDXlw51BBIgqM" />
 
         <activity
-            android:name="com.soma.yampp.FirstActivity"
+            android:name="com.soma.wynkk.FirstActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" >
@@ -64,47 +64,47 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.soma.yampp.AfterLoginActivity"
+            android:name="com.soma.wynkk.AfterLoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
        <!--  <activity
-            android:name="com.soma.yampp.CommentListActivity"
+            android:name="wynkk.CommentListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" /> -->
         <activity
-            android:name="com.soma.yampp.MainPageDrawerAcitivity"
+            android:name="com.soma.wynkk.MainPageDrawerAcitivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
        <!--  <activity
-            android:name="com.soma.yampp.MainPageActivity"
+            android:name="wynkk.MainPageActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" /> -->
          <activity
-            android:name="com.soma.yampp.MainPageWithMapActivity"
+            android:name="com.soma.wynkk.MainPageWithMapActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name="com.soma.yampp.HappyPageActivityOnMap"
+            android:name="com.soma.wynkk.HappyPageActivityOnMap"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
        <!--  <activity
-            android:name="com.soma.yampp.CommentActivity"
+            android:name="wynkk.CommentActivity"
             android:screenOrientation="portrait"
               android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden" /> -->
        <!--  <activity
-            android:name="com.soma.yampp.ListViewForPlaces"
+            android:name="wynkk.ListViewForPlaces"
             android:screenOrientation="portrait" /> -->
         <activity
-            android:name="com.soma.yampp.ListViewPlacesList"
+            android:name="com.soma.wynkk.ListViewPlacesList"
             android:screenOrientation="portrait" />
     </application>
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import com.soma.model.SearchWynkkModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -22,15 +23,9 @@ import android.widget.Toast;
 import com.soma.contraoller.SearchController;
 import com.soma.contraoller.SignupController;
 import com.soma.util.CommonFunction.FragmentCallback;
-import com.soma.yampp.AfterLoginActivity;
-import com.soma.yampp.HappyPageActivityOnMap;
-import com.soma.yampp.ListViewPlacesList;
-import com.soma.yampp.MainPageDrawerAcitivity;
-import com.soma.yampp.MapInfoViewFactory;
-
-
-
-
+import com.soma.wynkk.AfterLoginActivity;
+import com.soma.wynkk.ListViewPlacesList;
+import com.soma.wynkk.MainPageDrawerAcitivity;
 
 
 /********************************* Class to Register user through webservice ****************************/
@@ -161,7 +156,7 @@ public class ServiceWork extends AsyncTask<Void, Void, JSONObject> {
                             {
                                 SearchController getSignupController = new SearchController();
                                 getSignupController.init(mResult);
-                                ArrayList<com.soma.model.SearchYamppMOdel.Data> userDeatail=getSignupController.findAll();
+                                ArrayList<SearchWynkkModel.Data> userDeatail=getSignupController.findAll();
                                 CommonFunction.sSearchYammp.clear();
                                 for(int i=0;i<userDeatail.size();i++)
                                 {
@@ -212,7 +207,7 @@ public class ServiceWork extends AsyncTask<Void, Void, JSONObject> {
                             {
                                 SearchController getSignupController = new SearchController();
                                 getSignupController.init(mResult);
-                                ArrayList<com.soma.model.SearchYamppMOdel.Data> userDeatail=getSignupController.findAll();
+                                ArrayList<SearchWynkkModel.Data> userDeatail=getSignupController.findAll();
                                 CommonFunction.sSearchYammp.clear();
                                 for(int i=0;i<userDeatail.size();i++)
                                 {
@@ -310,7 +305,7 @@ public class ServiceWork extends AsyncTask<Void, Void, JSONObject> {
 
                                 SearchController getSignupController = new SearchController();
                                 getSignupController.init(mResult);
-                                ArrayList<com.soma.model.SearchYamppMOdel.Data> userDeatail=getSignupController.findAll();
+                                ArrayList<SearchWynkkModel.Data> userDeatail=getSignupController.findAll();
                                 CommonFunction.sSearchYammp.clear();
                                 for(int i=0;i<userDeatail.size();i++)
                                 {

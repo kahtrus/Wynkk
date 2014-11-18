@@ -13,7 +13,7 @@
         android:background="#0A91A2"
         android:gravity="left"
         android:padding="5dp"
-        android:text="Caution"
+        android:text="Fail"
         android:textColor="#FFF"
         android:textSize="24sp" />
 

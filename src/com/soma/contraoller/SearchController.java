@@ -8,8 +8,8 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import com.soma.model.SearchYamppMOdel;
-import com.soma.model.SearchYamppMOdel.Data;
+import com.soma.model.SearchWynkkModel;
+import com.soma.model.SearchWynkkModel.Data;
 
 public class SearchController {
 
@@ -29,7 +29,7 @@ public class SearchController {
 
 
     /** The _m Tests. */
-    private SearchYamppMOdel _mTests = null;
+    private SearchWynkkModel _mTests = null;
 
     /**
      * Instantiates a new SignupController controller.
@@ -52,7 +52,7 @@ public class SearchController {
         try
         {
             jp = jsonFactory.createJsonParser(json);
-            _mTests = objectMapper.readValue(jp, SearchYamppMOdel.class);
+            _mTests = objectMapper.readValue(jp, SearchWynkkModel.class);
 
         }
 

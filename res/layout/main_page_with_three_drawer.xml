@@ -84,14 +84,20 @@
         android:layout_height="fill_parent"
         android:visibility="gone" >
     </FrameLayout>
-
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.MapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/mTopHeader" />
+    <com.soma.wynkk.MapWrapperLayout
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:id="@+id/map_relative_layout"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_below="@id/mTopHeader"
+          tools:context=".MainActivity" >
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.soma.wynkk.MapWrapperLayout>
 
     <ImageButton
         android:id="@+id/topSliderButton"
@@ -749,7 +755,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Invite your friends and share your Yampp experience"
+                android:text="Invite your friends and share your Wynkk experience"
                 android:textColor="#05A9A9"
                 android:textSize="16sp"
                 android:textStyle="bold" />

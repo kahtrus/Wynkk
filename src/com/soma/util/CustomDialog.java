@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.soma.synge.R;
-import com.soma.yampp.FirstActivity;
+import com.soma.wynkk.FirstActivity;
 
 
 public class CustomDialog {
