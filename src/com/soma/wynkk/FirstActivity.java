@@ -183,8 +183,8 @@ public class FirstActivity extends Activity implements OnClickListener
         mLinkedIn.setOnClickListener(this);
         mInstagram.setOnClickListener(this);
         mPinterest.setOnClickListener(this);        
-mSocialTxt.setOnClickListener(this);
-mShowMapTxt.setOnClickListener(this);
+        mSocialTxt.setOnClickListener(this);
+        mShowMapTxt.setOnClickListener(this);
 
         adapter = new SocialAuthAdapter(new ResponseListener());
 
@@ -225,7 +225,7 @@ mShowMapTxt.setOnClickListener(this);
             
             @Override
             public void onLocationChanged(Location location) {
-                map.clear();
+              map.clear();
               LatLng pos1 = new LatLng(location.getLatitude(),location.getLongitude());
               map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)).position(pos1).title("Your position"));    
               map.moveCamera(CameraUpdateFactory.newLatLngZoom(pos1, 16));
@@ -536,7 +536,7 @@ mShowMapTxt.setOnClickListener(this);
     public void onClick(View v) 
     {
      if(!CommonFunction.isInternetOn(FirstActivity.this)){
-        buildDialog(this,"You need to enable internet connection!").show();
+        buildDialog(this,"Please enable internet connection!").show();
       }else {
          CommonFunction com = new CommonFunction();
          switch (v.getId()) {

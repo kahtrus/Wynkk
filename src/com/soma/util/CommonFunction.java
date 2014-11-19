@@ -61,7 +61,7 @@ public class CommonFunction {
 //CAAFWobZAaAAUBAAHPN89sViZCJx63x1AX0Q8BGakEOhagh9RcazbctiGHCCP3whAFldXmOiFYyWoCHBBztd4Lgpn2RSw4oMzCYy6WkJORSHTZCfvV2hzKHypagvpDfRT8yPWVz1QerB1vTirmoBXETCQNLongfr2AHDfQTMBPKB9PmWU3DNNeUN3ZCZB93Exw3CUSVIslswkZA1lWsAJ4W
 //CAAFWobZAaAAUBAMwBRCZAcyCpHROqiY8jsC8Li59HgMGzBUl0blZAki7Fstv4VcxEPSyNDDYFiFBeJ89E0ufGO34iX4xaUjtLqsXXioANhE8S8v3P3hWO6GA3cZAJqLZBftOac3eP5wUE08AdfsYBP00x14Gk3NqVKGzNALddPTFr0EtH3I9LZBvJLtyQBbrZCYg3tr7qOhJWnxw0QMMOu6
     public static String host="http://wynkk.co/Webservices/";
-    public static String Image_Url="http://wynkk.co/app/webroot/img/photo/";
+    public static String Image_Url="http://wynkk.co/img/photo/";
    // public static String host="http://wynkk.net/Webservices/";
    // public static String Image_Url="http://wynkk.net/app/webroot/img/photo/";
 
@@ -69,8 +69,8 @@ public class CommonFunction {
     public  static ArrayList<SearchWynkkModel.Data> sSearchYammp=new ArrayList<SearchWynkkModel.Data>();
 
     public static ArrayList<String> sNearByPlace=new ArrayList<String>();
-    public static ArrayList<Double> sNearLatitude=new ArrayList<Double>();;
-    public static ArrayList<Double> sNearLongitude=new ArrayList<Double>();;
+    public static ArrayList<Double> sNearLatitude=new ArrayList<Double>();
+    public static ArrayList<Double> sNearLongitude=new ArrayList<Double>();
     public static final int REQUEST_CODE = 1000;
     public static int check=0;
     public CommonFunction(Context context) {
@@ -189,17 +189,18 @@ public class CommonFunction {
             NetworkInfo result = connect.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             NetworkInfo result2 = connect.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
-
             if (result != null && result.isConnectedOrConnecting())
             {
+                Log.d("Inside isInternetOn(1)",result.toString());
+                Log.d("Inside isInternetOn(1)",String.valueOf(result.isConnectedOrConnecting()));
                 return true;
             }
-            else
-                if (result2 != null && result.isConnectedOrConnecting())
-                {
-                    return true;
-                } else
-                    return false;
+            if (result2 != null && result2.isConnectedOrConnecting()){
+                Log.d("Inside isInternetOn(2)",result2.toString());
+                Log.d("Inside isInternetOn(2)",String.valueOf(result2.isConnectedOrConnecting()));
+                return true;
+                } else return false;
+
         }
         else
             return false;

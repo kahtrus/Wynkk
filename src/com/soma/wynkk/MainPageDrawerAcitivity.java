@@ -3,7 +3,9 @@ package com.soma.wynkk;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import android.util.DisplayMetrics;
@@ -62,8 +64,10 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
 {
     private ListView lastWynkksList;
     String messageToShare="Hello From Wynkk";
-    ImageButton mShareSocial;
-    Button mShareSocialInvis;
+    Marker homeMarker;
+    private HashMap<LatLng,List<Marker>> wynkksMap = new HashMap<LatLng, List<Marker>>();
+//    ImageButton mShareSocial;
+//    Button mShareSocialInvis;
     ImageView twitterGreen;
     private SocialAuthAdapter adapter;
     private static final double DEFAULT_RADIUS = 1000000;
@@ -413,19 +417,25 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
             return;
         }
 
-        this.infoButtonListener = new OnInfoWindowElemTouchListener(shareButton,
-                getResources().getDrawable(R.drawable.ic_menu_share_down),
-                getResources().getDrawable(R.drawable.ic_menu_share_up))
-        {
+//        this.infoButtonListener = new OnInfoWindowElemTouchListener(shareButton,
+//                getResources().getDrawable(R.drawable.ic_menu_share_down),
+//                getResources().getDrawable(R.drawable.ic_menu_share_up))
+//        {
+//            @Override
+//            protected void onClickConfirmed(View v, Marker marker) {
+//                // Here we can perform some action triggered after clicking the button
+//                //shareButton.performClick();
+////                marker.hideInfoWindow();
+//
+//            }
+//        };
+//        this.shareButton.setOnTouchListener(infoButtonListener);
+        shareButton.setOnClickListener(new OnClickListener() {
             @Override
-            protected void onClickConfirmed(View v, Marker marker) {
-                // Here we can perform some action triggered after clicking the button
-                //shareButton.performClick();
-//                marker.hideInfoWindow();
-
+            public void onClick(View v) {
+                v.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_menu_share_up));
             }
-        };
-        this.shareButton.setOnTouchListener(infoButtonListener);
+        });
         adapter.enable(shareButton);
 
         this.infoButtonListener = new OnInfoWindowElemTouchListener(closeButton,
@@ -443,6 +453,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         infoWindowClickable.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("INFOWINDOWCLICKABLE","clicked");
                 // TODO Auto-generated method stub
             }
         });
@@ -641,13 +652,15 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
             
             @Override
             public void onLocationChanged(Location location) {
-                map.clear();
+                //map.clear();
+                if(homeMarker!=null)
+                    homeMarker.remove();
                 circle=null;
 
-              LatLng pos1 = new LatLng(location.getLatitude(),location.getLongitude());
-              map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)).position(pos1).title("Your position"));    
-              map.moveCamera(CameraUpdateFactory.newLatLngZoom(pos1, 14));
-             // map.animateCamera(CameraUpdateFactory.newLatLngZoom(pos1, 16));
+                LatLng pos1 = new LatLng(location.getLatitude(),location.getLongitude());
+                homeMarker = map.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)).position(pos1).title("Your position"));
+                //map.moveCamera(CameraUpdateFactory.newLatLngZoom(pos1, 14));
+                // map.animateCamera(CameraUpdateFactory.newLatLngZoom(pos1, 16));
             }
         };
         locationManager.requestLocationUpdates(provider, 20000, 0, locationListerner);
@@ -1303,47 +1316,60 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
 
     public void drawMarkerOnMap()
     {
+        ArrayList<SearchWynkkModel.Data> wynks = CommonFunction.sSearchYammp;
         map.clear();
         circle = null;
-
+        wynkksMap.keySet();
         LatLng pos1;
-        for(int i=0;i<CommonFunction.sSearchYammp.size();i++)
+        float meters = 10000.0f;
+        float [] res= new float[10];
+        BitmapDescriptor bitmapDescriptor=null;
+//        double lat=Double.parseDouble(wynks.get(wynks.size()-1).get_latitude());
+//        double lon=Double.parseDouble(wynks.get(wynks.size()-1).get_longitude());
+//        pos1 = new LatLng(lat,lon);
+        wynkksMap.put(new LatLng(0,0),new ArrayList<Marker>());
+        for(int i=wynks.size()-1;i>=0;i--)
         {
-
-            double lat=Double.parseDouble(CommonFunction.sSearchYammp.get(i).get_latitude());
-            double lon=Double.parseDouble(CommonFunction.sSearchYammp.get(i).get_longitude());
+            double lat=Double.parseDouble(wynks.get(i).get_latitude());
+            double lon=Double.parseDouble(wynks.get(i).get_longitude());
             pos1 = new LatLng(lat,lon);
             Log.d("hello ",lat+" "+lon);
-            if(CommonFunction.sSearchYammp.get(i).get_monkey_icon().equalsIgnoreCase("monkey_1"))
-            {
-                Log.d("hello ",""+i);
-                marker=map.addMarker(new MarkerOptions().title(""+i).icon(BitmapDescriptorFactory.fromResource(R.drawable.m1)).position(pos1).draggable(false).flat(true).anchor(0.5f, 0.5f));
 
-                //marker.showInfoWindow();
-            }
-            if(CommonFunction.sSearchYammp.get(i).get_monkey_icon().equalsIgnoreCase("monkey_2"))
+            if(wynks.get(i).get_monkey_icon().equalsIgnoreCase("monkey_1"))
             {
-                Log.d("hello ",""+i);
-                marker=map.addMarker(new MarkerOptions().title(""+i).icon(BitmapDescriptorFactory.fromResource(R.drawable.m2)).position(pos1).draggable(false).flat(true).anchor(0.5f, 0.5f));
-                // marker.showInfoWindow();
+                bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.m1);
+
             }
-            if(CommonFunction.sSearchYammp.get(i).get_monkey_icon().equalsIgnoreCase("monkey_3"))
+            if(wynks.get(i).get_monkey_icon().equalsIgnoreCase("monkey_2"))
             {
-                Log.d("hello ",""+i);
-                marker=map.addMarker(new MarkerOptions().title(""+i).icon(BitmapDescriptorFactory.fromResource(R.drawable.m3)).position(pos1).draggable(false).flat(true).anchor(0.5f, 0.5f));
-                //  marker.showInfoWindow();
+                bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.m2);
+
             }
-            if(CommonFunction.sSearchYammp.get(i).get_monkey_icon().equalsIgnoreCase("monkey_4"))
+            if(wynks.get(i).get_monkey_icon().equalsIgnoreCase("monkey_3"))
             {
-                Log.d("hello ",""+i);
-                marker=map.addMarker(new MarkerOptions().title(""+i).icon(BitmapDescriptorFactory.fromResource(R.drawable.m4)).position(pos1).draggable(false).flat(true).anchor(0.5f, 0.5f));
-                // marker.showInfoWindow();
+                bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.m3);
+
             }
-            if(CommonFunction.sSearchYammp.get(i).get_monkey_icon().equalsIgnoreCase("monkey_5"))
+            if(wynks.get(i).get_monkey_icon().equalsIgnoreCase("monkey_4"))
             {
-                Log.d("hello ",""+i);
-                marker=map.addMarker(new MarkerOptions().title(""+i).icon(BitmapDescriptorFactory.fromResource(R.drawable.m5)).position(pos1).draggable(false).flat(true).anchor(0.5f, 0.5f));
-                //marker.showInfoWindow();
+                bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.m4);
+            }
+            if(wynks.get(i).get_monkey_icon().equalsIgnoreCase("monkey_5"))
+            {
+                bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.m5);
+            }
+
+            marker=map.addMarker(new MarkerOptions().title(""+i).icon(bitmapDescriptor).position(pos1).draggable(false).flat(true).anchor(0.5f, 0.5f));
+                for(LatLng ltlg:wynkksMap.keySet()){
+                    Log.e("RADIUSSSS",String.valueOf(toRadiusMeters(pos1,ltlg)));
+                    if(toRadiusMeters(pos1,ltlg)>meters) {
+                        List<Marker> tmplst = new ArrayList<Marker>(5);
+                        tmplst.add(marker);
+                        wynkksMap.put(pos1,tmplst);
+                    }else{
+                        wynkksMap.get(ltlg).add(marker);
+                        marker.remove();
+                    }
             }
             position1=pos1;
 
@@ -1525,6 +1551,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         float[] result = new float[1];
         Location.distanceBetween(center.latitude, center.longitude,
                 radius.latitude, radius.longitude, result);
+
         return result[0];
     }
     private class DraggableCircle {

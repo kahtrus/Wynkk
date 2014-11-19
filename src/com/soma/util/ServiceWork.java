@@ -209,9 +209,9 @@ public class ServiceWork extends AsyncTask<Void, Void, JSONObject> {
                                 getSignupController.init(mResult);
                                 ArrayList<SearchWynkkModel.Data> userDeatail=getSignupController.findAll();
                                 CommonFunction.sSearchYammp.clear();
-                                for(int i=0;i<userDeatail.size();i++)
+                                for(int i=userDeatail.size()-1;i>=0;i--)
                                 {
-                                    CommonFunction.sSearchYammp.add(i,userDeatail.get(i));
+                                    CommonFunction.sSearchYammp.add(userDeatail.get(i));
 
                                 }
                                 SignUpValidateCheckResponse=5;
