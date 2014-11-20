@@ -368,6 +368,7 @@
         </ScrollView>
 
         <LinearLayout
+            android:id="@+id/commentLayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#474747"
@@ -482,6 +483,20 @@
                 android:layout_height="30dp"
                 android:layout_weight=".2"
                 android:src="@drawable/down_arrow" />
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_above="@+id/bottomCommentLayout" android:layout_centerHorizontal="true"
+            android:id="@+id/nearest_wynkks_fragment"
+            android:visibility="gone"
+            android:orientation="horizontal">
+        <include
+                layout="@layout/nearest_wynkks_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="17dp"/>
+
     </LinearLayout>
 
     <!-- Layout for clock button -->

@@ -61,7 +61,9 @@ public class SearchWynkkModel
 
     public static class Data
     {
-        
+        @JsonProperty("comment_id")
+        private String _comment_id;
+
         @JsonProperty("user_id")
         private String _user_id;
         
@@ -85,8 +87,15 @@ public class SearchWynkkModel
         
         @JsonProperty("time")
         private String _Time;
-        
-        
+
+
+        public String get_comment_id() {
+            return _comment_id;
+        }
+
+        public void set_comment_id(String _comment_id) {
+            this._comment_id = _comment_id;
+        }
 
         public String get_Time() {
             return _Time;

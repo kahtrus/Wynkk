@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.view.*;
 import android.view.inputmethod.InputMethodManager;
@@ -62,7 +63,9 @@ import com.soma.util.ServiceWork;
 
 public class MainPageDrawerAcitivity extends Activity implements OnClickListener,SeekBar.OnSeekBarChangeListener
 {
-    private ListView lastWynkksList;
+    private ListView lastWynkksList,listViewMonkeys5,listViewMonkeys4,listViewMonkeys3,listViewMonkeys2,listViewMonkeys1;
+    private View nearestWynkksFragment;
+    private Button closeWynkkTable;
     String messageToShare="Hello From Wynkk";
     Marker homeMarker;
     private HashMap<LatLng,List<Marker>> wynkksMap = new HashMap<LatLng, List<Marker>>();
@@ -245,8 +248,15 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         mLinkedInInvite.setOnClickListener(this);
         mLocation.setOnClickListener(this);
 
-
+        nearestWynkksFragment = (View)findViewById(R.id.nearest_wynkks_fragment);
         lastWynkksList = (ListView)findViewById(R.id.lastCommentsList);
+        listViewMonkeys5 = (ListView)findViewById(R.id.listViewMonkeys5);
+        listViewMonkeys4 = (ListView)findViewById(R.id.listViewMonkeys4);
+        listViewMonkeys3 = (ListView)findViewById(R.id.listViewMonkeys3);
+        listViewMonkeys2 = (ListView)findViewById(R.id.listViewMonkeys2);
+        listViewMonkeys1 = (ListView)findViewById(R.id.listViewMonkeys1);
+        closeWynkkTable = (Button)findViewById(R.id.btn_close_WynkTable);
+        closeWynkkTable.setOnClickListener(this);
 
         LinearLayout inviteYourFriendsLayout = (LinearLayout)findViewById(R.id.inviteYourFriendsLayout);
         //inviteYourFriendsLayout.setOnClickListener(this);
@@ -446,6 +456,9 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
             protected void onClickConfirmed(View v, Marker marker) {
                 // Here we can perform some action triggered after clicking the button
                 marker.hideInfoWindow();
+                setupWynkkTableAdapter(wynkksMap.get(marker.getPosition()));
+                mLocationLayout.setVisibility(View.GONE);
+                nearestWynkksFragment.setVisibility(View.VISIBLE);
                 //Toast.makeText(MainPageDrawerAcitivity.this, marker.getTitle() + "'s button clicked!", Toast.LENGTH_SHORT).show();
             }
         };
@@ -454,6 +467,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
             @Override
             public void onClick(View v) {
                 Log.d("INFOWINDOWCLICKABLE","clicked");
+
                 // TODO Auto-generated method stub
             }
         });
@@ -495,8 +509,6 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
                         return null;
                 }else {
                     Log.d(TAG, id);
-
-
                     int pos=Integer.parseInt(id);
                     Log.d("Marker pos",""+marker.getPosition());
                     Log.d("your position is",""+id);
@@ -909,6 +921,9 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         switch(v.getId())
         {
 
+            case R.id.btn_close_WynkTable:
+                nearestWynkksFragment.setVisibility(View.GONE);
+                mLocationLayout.setVisibility(View.VISIBLE);
 
             case R.id.setLocation:
 
@@ -1155,6 +1170,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
                 CommonFunction.sActivityName="SearchYampp";
                 mURL=CommonFunction.host+"advanceSearch?keyword=hour";
                 map.clear();
+                wynkksMap.clear();
                 circle = null;
                 methodThatStartsTheAsyncTask();
 
@@ -1169,6 +1185,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
                 CommonFunction.sActivityName="SearchYampp";
                 mURL=CommonFunction.host+"advanceSearch?keyword=week";
                 map.clear();
+                wynkksMap.clear();
                 circle = null;
                 methodThatStartsTheAsyncTask();
 
@@ -1182,6 +1199,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
                 CommonFunction.sActivityName="SearchYampp";
                 mURL=CommonFunction.host+"advanceSearch?keyword=month";
                 map.clear();
+                wynkksMap.clear();
                 circle = null;
                 methodThatStartsTheAsyncTask();
 
@@ -1289,7 +1307,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
                 }
                 else
                 {
-
+                    Log.e("methodThatStartsTheAsyncTask","failed to load wynmks");
 
                     //                   if(s)
                     //                    
@@ -1318,17 +1336,19 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
     {
         ArrayList<SearchWynkkModel.Data> wynks = CommonFunction.sSearchYammp;
         map.clear();
+        wynkksMap.clear();
         circle = null;
-        wynkksMap.keySet();
+
         LatLng pos1;
-        float meters = 10000.0f;
+        float meters = 2000.0f;
         float [] res= new float[10];
         BitmapDescriptor bitmapDescriptor=null;
 //        double lat=Double.parseDouble(wynks.get(wynks.size()-1).get_latitude());
 //        double lon=Double.parseDouble(wynks.get(wynks.size()-1).get_longitude());
 //        pos1 = new LatLng(lat,lon);
         wynkksMap.put(new LatLng(0,0),new ArrayList<Marker>());
-        for(int i=wynks.size()-1;i>=0;i--)
+        Log.d("drawMarkerOnMap()",wynkksMap.keySet().toString());
+        for(int i=0;i<=wynks.size()-1;i++)
         {
             double lat=Double.parseDouble(wynks.get(i).get_latitude());
             double lon=Double.parseDouble(wynks.get(i).get_longitude());
@@ -1358,19 +1378,27 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
             {
                 bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.m5);
             }
-
+            boolean isMarkerAdded = false;
             marker=map.addMarker(new MarkerOptions().title(""+i).icon(bitmapDescriptor).position(pos1).draggable(false).flat(true).anchor(0.5f, 0.5f));
                 for(LatLng ltlg:wynkksMap.keySet()){
                     Log.e("RADIUSSSS",String.valueOf(toRadiusMeters(pos1,ltlg)));
-                    if(toRadiusMeters(pos1,ltlg)>meters) {
-                        List<Marker> tmplst = new ArrayList<Marker>(5);
-                        tmplst.add(marker);
-                        wynkksMap.put(pos1,tmplst);
-                    }else{
+                    if(toRadiusMeters(pos1,ltlg)<meters) {
+                        Log.e("RADIUSSSS","< then bla");
                         wynkksMap.get(ltlg).add(marker);
-                        marker.remove();
+                        marker.setVisible(false);
+                        isMarkerAdded = true;
+                        break;
                     }
-            }
+                }
+                if(!isMarkerAdded){
+                    List<Marker> tmplst = new ArrayList<Marker>(5);
+                    Log.e("RADIUSSSS","new list createed");
+                    tmplst.add(marker);
+                    Log.e("RADIUSSSS","added to list");
+                    wynkksMap.put(pos1,tmplst);
+                    Log.e("RADIUSSSS","new list put to map");
+                }
+
             position1=pos1;
 
         }
@@ -1405,7 +1433,7 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
 
     private void moveInfoWindow() {
 
-        if (infoWindow == null)
+        if (infoWindowClickable == null)
             return;
 
         FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) infoWindowClickable
@@ -1739,17 +1767,36 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
         }
     }
 
-    public void setupAdapter(){
-        if(CommonFunction.sSearchYammp!=null) {
+    public void setupAdapter() {
+        if (CommonFunction.sSearchYammp != null) {
             WynkkListAdapter adapter = new WynkkListAdapter(this, R.layout.last_comments_list_item, CommonFunction.sSearchYammp);
             lastWynkksList.setVisibility(View.VISIBLE);
 
             lastWynkksList.setAdapter(adapter);
         }
-
-
-
     }
+
+ public void setupWynkkTableAdapter(List<Marker> list){
+        if(list!=null) {
+            NearestWynkksAdapter adapter = new NearestWynkksAdapter(this, R.layout.list_item_nearest_wynkks,list);
+            nearestWynkksFragment.setVisibility(View.VISIBLE);
+            listViewMonkeys1.setAdapter(adapter);
+            listViewMonkeys2.setAdapter(adapter);
+            listViewMonkeys3.setAdapter(adapter);
+            listViewMonkeys4.setAdapter(adapter);
+            listViewMonkeys5.setAdapter(adapter);
+            listViewMonkeys1.setOnItemClickListener(new WynkItemClickListener());
+            listViewMonkeys2.setOnItemClickListener(new WynkItemClickListener());
+            listViewMonkeys3.setOnItemClickListener(new WynkItemClickListener());
+            listViewMonkeys4.setOnItemClickListener(new WynkItemClickListener());
+            listViewMonkeys5.setOnItemClickListener(new WynkItemClickListener());
+        }
+}
+
+
+
+
+
     private class WynkkListAdapter extends ArrayAdapter<SearchWynkkModel.Data>{
 
         public WynkkListAdapter(Context context, int resource, List<SearchWynkkModel.Data> wynkks) {
@@ -1789,6 +1836,52 @@ public class MainPageDrawerAcitivity extends Activity implements OnClickListener
             return convertView;
         }
 
+    }
+    private class NearestWynkksAdapter extends ArrayAdapter<Marker>{
+
+        public NearestWynkksAdapter(Context context, int resource, List<Marker> objects) {
+            super(context, resource, objects);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if(convertView==null){
+                convertView = getLayoutInflater().inflate(R.layout.list_item_nearest_wynkks,null);
+            }
+            Marker wynkk = getItem(position);
+            String id=wynkk.getTitle();
+            int pos=Integer.parseInt(id);
+            Log.d("Marker pos",""+wynkk.getPosition());
+            Log.d("your position is",""+id);
+            String monkey = CommonFunction.sSearchYammp.get(pos).get_monkey_icon();
+            ImageView image = (ImageView)convertView.findViewById(R.id.list_item_little_smile);
+            int imgResId=R.drawable.monkey_5;
+            if(monkey.equalsIgnoreCase("monkey_5")){
+
+            }else if(monkey.equalsIgnoreCase("monkey_4")){
+                imgResId = R.drawable.monkey_4;
+            }else if(monkey.equalsIgnoreCase("monkey_3")){
+                imgResId = R.drawable.monkey_3;
+            }else if(monkey.equalsIgnoreCase("monkey_2")){
+                imgResId = R.drawable.monkey_2;
+            }else if(monkey.equalsIgnoreCase("monkey_1")){
+                imgResId = R.drawable.monkey_1;
+            }
+            image.setImageResource(imgResId);
+
+            return convertView;
+        }
+    }
+    private class WynkItemClickListener implements AdapterView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Marker mark = (Marker) parent.getAdapter().getItem(position);
+            mark.setVisible(true);
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(mark.getPosition(),18));
+            mark.showInfoWindow();
+
+        }
     }
     private void logout(){
         if(FirstActivity.mFbFlag)
