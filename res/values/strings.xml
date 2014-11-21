@@ -5,5 +5,10 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="facebook_app_id">376727525785605</string>
+    <string name="welcome_text">Join up.\nMake reviews matter.\nThere\'s a lot said in a wynkk.</string>
+    <string name="login_text_privacy">
+        By using Wynkk, you agree to
+        \nWynkk\'s Terms of Use and
+        \nPrivacy Policy</string>
 
 </resources>

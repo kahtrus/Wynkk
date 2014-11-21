@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boundry_all">
+
+    <ListView
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:id="@+id/listViewMonkeys1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+    <ListView
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:id="@+id/listViewMonkeys2"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/listViewMonkeys1"
+            android:layout_toEndOf="@+id/listViewMonkeys1"/>
+    <ListView
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:id="@+id/listViewMonkeys3"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/listViewMonkeys2"
+            android:layout_toEndOf="@+id/listViewMonkeys2"/>
+    <ListView
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:id="@+id/listViewMonkeys4"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/listViewMonkeys3"
+            android:layout_toEndOf="@+id/listViewMonkeys3"/>
+    <ListView
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:id="@+id/listViewMonkeys5"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/listViewMonkeys4"
+            android:layout_toEndOf="@+id/listViewMonkeys4"/>
+    <TextView
+            android:layout_width="50dp"
+            android:layout_height="15dp"
+            android:layout_marginBottom="3dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:textColor="@color/dark_ocean"
+            android:id="@+id/textCount1"
+            android:gravity="center"
+            android:layout_below="@+id/listViewMonkeys1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/imageViewMonkey1"
+            android:layout_below="@+id/textCount1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/monkey_1"/>
+    <TextView
+            android:layout_width="50dp"
+            android:layout_height="15dp"
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/dark_ocean"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:gravity="center"
+            android:id="@+id/textCount2"
+            android:layout_toRightOf="@+id/listViewMonkeys1"
+            android:layout_below="@+id/listViewMonkeys2"
+            />
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/imageViewMonkey2"
+            android:layout_below="@+id/textCount2"
+            android:layout_toRightOf="@+id/listViewMonkeys1"
+            android:layout_toEndOf="@+id/listViewMonkeys1"
+            android:src="@drawable/monkey_2"/>
+<ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+            android:id="@+id/imageViewMonkey3"
+            android:layout_below="@+id/textCount3"
+            android:layout_toRightOf="@+id/listViewMonkeys2"
+            android:layout_toEndOf="@+id/listViewMonkeys2"
+            android:src="@drawable/monkey_3"/>
+    <TextView
+            android:layout_width="50dp"
+            android:layout_height="15dp"
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/dark_ocean"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/textCount3"
+
+            android:layout_toRightOf="@+id/listViewMonkeys2"
+            android:layout_below="@+id/listViewMonkeys2"
+            android:gravity="center"/>
+    <TextView
+            android:layout_width="50dp"
+            android:layout_height="15dp"
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/dark_ocean"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:gravity="center"
+            android:id="@+id/textCount4"
+            android:layout_toRightOf="@+id/listViewMonkeys3"
+            android:layout_below="@+id/listViewMonkeys3"
+            />
+
+<ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+            android:id="@+id/imageViewMonkey4"
+            android:layout_below="@+id/textCount4"
+            android:layout_toRightOf="@+id/imageViewMonkey3"
+            android:layout_toEndOf="@+id/imageViewMonkey3"
+            android:src="@drawable/monkey_4"/>
+
+<ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+            android:id="@+id/imageViewMonkey5"
+            android:layout_below="@+id/textCount5"
+            android:layout_toRightOf="@+id/listViewMonkeys4"
+            android:layout_toEndOf="@+id/listViewMonkeys4"
+            android:src="@drawable/monkey_5"/>
+
+    <TextView
+            android:layout_width="50dp"
+            android:layout_height="15dp"
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/dark_ocean"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:gravity="center"
+            android:id="@+id/textCount5"
+            android:layout_toRightOf="@+id/listViewMonkeys4"
+            android:layout_below="@+id/listViewMonkeys5"
+            />
+
+</RelativeLayout>
+    <Button android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/btn_close_WynkTable"
+
+            android:background="@drawable/ic_wynkk_close_up"/>
+</LinearLayout>

@@ -430,16 +430,16 @@
         android:id="@+id/locationLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/bottomCommentLayout"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="100dp"
         android:alpha=".9"
+        android:layout_marginRight="50dp"
         android:background="@drawable/boundry_xml"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
-         >
+        android:layout_below="@+id/mTopHeader" android:layout_toRightOf="@+id/map_overlay_layout1"
+        android:layout_toEndOf="@+id/map_overlay_layout1" android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -487,6 +487,7 @@
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="200dp"
+            android:alpha=".9"
             android:layout_above="@+id/bottomCommentLayout" android:layout_centerHorizontal="true"
             android:id="@+id/nearest_wynkks_fragment"
             android:visibility="gone"

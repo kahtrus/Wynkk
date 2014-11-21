@@ -162,7 +162,7 @@ public class AfterLoginActivity extends Activity implements OnClickListener
                             switch (SignUpValidateCheckResponse) {
                                 case 1:
 
-                                    mCustomDialog.callCustomDialog(AfterLoginActivity.this, "sorry! someone else got that name already. Please choose another one!", "no");
+                                    mCustomDialog.callCustomDialog(AfterLoginActivity.this, "Sorry, that user name is taken – can you try another", "no");
 
                                     break;
 
@@ -423,7 +423,7 @@ public class AfterLoginActivity extends Activity implements OnClickListener
                     break;
 
                 case 2:
-                    Toast.makeText(AfterLoginActivity.this,"fail to register", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AfterLoginActivity.this,"Sorry, we could'nt register you – can you try one more time", Toast.LENGTH_SHORT).show();
 
                     break;
 

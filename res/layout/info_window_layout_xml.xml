@@ -64,10 +64,10 @@
                         android:background="@drawable/ic_wynkk_close_down"
                         />
                 <Button
-                        android:id="@+id/mShareSocial"
+                        android:id="@+id/mShowNearest"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/ic_menu_share_down"
+                        android:background="@android:drawable/ic_menu_more"
                         android:layout_gravity="right"
                         />
 
@@ -115,6 +115,13 @@
             android:textColor="#fff"
             android:textSize="22sp"
             android:textStyle="bold" />
+        <Button
+                android:id="@+id/mShareSocial"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_menu_share_down"
+                android:layout_gravity="right"
+                />
 
     </LinearLayout>
 
